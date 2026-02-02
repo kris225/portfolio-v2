@@ -10,5 +10,7 @@ export { default as Footer } from './footer';
 export { default as Hero } from './sections/hero';
 export { default as About } from './sections/about';
 export { default as Jobs } from './sections/jobs';
+export { default as Skills } from './sections/skills';
 export { default as Featured } from './sections/featured';
+export { default as Blogs } from './sections/blogs';
 export { default as Contact } from './sections/contact';

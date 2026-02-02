@@ -61,30 +61,25 @@ const Hero = () => {
 
   const one = <h1>Hi, my name is</h1>;
   const two = <h2 className="big-heading">Krishna Gundimeda.</h2>;
-  const three = <h3 className="big-heading">I build AI-powered systems.</h3>;
+  const three = <h3 className="big-heading">I build AI & web experiences.</h3>;
   const four = (
     <>
       <p>
-        I'm an AI Engineer specializing in building production-grade AI and web systems. Currently,
-        I'm focused on developing next-generation AI features and MCP-based services at{' '}
+        I'm a Frontend and AI Engineer specializing in building production-grade web applications
+        and intelligent systems. Currently, I'm contracting at{' '}
         <a href="https://www.broadcom.com/" target="_blank" rel="noreferrer">
           Broadcom
+        </a>{' '}
+        via{' '}
+        <a href="https://www.futuristglobal.com/" target="_blank" rel="noreferrer">
+          Futurist Global
         </a>
-        .
+        , developing next-generation AI features and reusable web components.
       </p>
     </>
   );
-  const five = (
-    <a
-      className="email-link"
-      href="https://prabhatkrishna.wordpress.com/"
-      target="_blank"
-      rel="noreferrer">
-      Check out my blog!
-    </a>
-  );
 
-  const items = [one, two, three, four, five];
+  const items = [one, two, three, four];
 
   return (
     <StyledHeroSection>

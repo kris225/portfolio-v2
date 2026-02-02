@@ -1,0 +1,287 @@
+import React, { useState, useEffect, useRef } from 'react';
+import styled from 'styled-components';
+import { srConfig } from '@config';
+import sr from '@utils/sr';
+import { usePrefersReducedMotion } from '@hooks';
+
+const StyledSkillsSection = styled.section`
+  max-width: 700px;
+
+  .inner {
+    display: flex;
+
+    @media (max-width: 600px) {
+      display: block;
+    }
+  }
+`;
+
+const StyledTabList = styled.div`
+  position: relative;
+  z-index: 3;
+  width: max-content;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+
+  @media (max-width: 600px) {
+    display: flex;
+    overflow-x: auto;
+    width: calc(100% + 100px);
+    padding-left: 50px;
+    margin-left: -50px;
+    margin-bottom: 30px;
+  }
+  @media (max-width: 480px) {
+    width: calc(100% + 50px);
+    padding-left: 25px;
+    margin-left: -25px;
+  }
+
+  li {
+    &:first-of-type {
+      @media (max-width: 600px) {
+        margin-left: 50px;
+      }
+      @media (max-width: 480px) {
+        margin-left: 25px;
+      }
+    }
+    &:last-of-type {
+      @media (max-width: 600px) {
+        padding-right: 50px;
+      }
+      @media (max-width: 480px) {
+        padding-right: 25px;
+      }
+    }
+  }
+`;
+
+const StyledTabButton = styled.button`
+  ${({ theme }) => theme.mixins.link};
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: var(--tab-height);
+  padding: 0 20px 2px;
+  border-left: 2px solid var(--lightest-navy);
+  background-color: transparent;
+  color: ${({ isActive }) => (isActive ? 'var(--green)' : 'var(--slate)')};
+  font-family: var(--font-mono);
+  font-size: var(--fz-xs);
+  text-align: left;
+  white-space: nowrap;
+
+  @media (max-width: 768px) {
+    padding: 0 15px 2px;
+  }
+  @media (max-width: 600px) {
+    ${({ theme }) => theme.mixins.flexCenter};
+    min-width: 120px;
+    padding: 0 15px;
+    border-left: 0;
+    border-bottom: 2px solid var(--lightest-navy);
+    text-align: center;
+  }
+
+  &:hover,
+  &:focus {
+    background-color: var(--light-navy);
+  }
+`;
+
+const StyledHighlight = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  width: 2px;
+  height: var(--tab-height);
+  border-radius: var(--border-radius);
+  background: var(--green);
+  transform: translateY(calc(${({ activeTabId }) => activeTabId} * var(--tab-height)));
+  transition: transform 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
+  transition-delay: 0.1s;
+
+  @media (max-width: 600px) {
+    top: auto;
+    bottom: 0;
+    width: 100%;
+    max-width: 120px;
+    height: 2px;
+    margin-left: 50px;
+    transform: translateX(calc(${({ activeTabId }) => activeTabId} * 120px));
+  }
+  @media (max-width: 480px) {
+    margin-left: 25px;
+  }
+`;
+
+const StyledTabPanels = styled.div`
+  position: relative;
+  width: 100%;
+  margin-left: 20px;
+
+  @media (max-width: 600px) {
+    margin-left: 0;
+  }
+`;
+
+const StyledTabPanel = styled.div`
+  width: 100%;
+  height: auto;
+  padding: 10px 5px;
+
+  h3 {
+    margin-bottom: 20px;
+    font-size: var(--fz-lg);
+    font-weight: 500;
+    color: var(--lightest-slate);
+  }
+
+  ul {
+    ${({ theme }) => theme.mixins.resetList};
+    display: grid;
+    grid-template-columns: repeat(2, minmax(140px, 200px));
+    grid-gap: 0 10px;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    list-style: none;
+  }
+
+  li {
+    position: relative;
+    margin-bottom: 10px;
+    padding-left: 20px;
+    font-family: var(--font-mono);
+    font-size: var(--fz-xs);
+    color: var(--slate);
+
+    &:before {
+      content: '▹';
+      position: absolute;
+      left: 0;
+      color: var(--green);
+      font-size: var(--fz-sm);
+      line-height: 12px;
+    }
+  }
+`;
+
+const skillsData = [
+  {
+    category: 'Frontend',
+    skills: ['JavaScript (ES6+)', 'React', 'AngularJS', 'StencilJS', 'HTML & CSS', 'Tailwind CSS'],
+  },
+  {
+    category: 'AI / ML',
+    skills: ['Python', 'Vertex AI', 'RAG / CAG', 'MCP', 'Google ADK', 'LLM Tool Use'],
+  },
+  {
+    category: 'Backend',
+    skills: ['Node.js', 'Python', 'SQL', 'REST APIs', 'ETL Pipelines', 'Pandas'],
+  },
+  {
+    category: 'Tools',
+    skills: ['Git', 'VS Code', 'Jupyter', 'GCP', 'Jaspersoft', 'Figma'],
+  },
+];
+
+const Skills = () => {
+  const [activeTabId, setActiveTabId] = useState(0);
+  const [tabFocus, setTabFocus] = useState(null);
+  const tabs = useRef([]);
+  const revealContainer = useRef(null);
+  const prefersReducedMotion = usePrefersReducedMotion();
+
+  useEffect(() => {
+    if (prefersReducedMotion) {
+      return;
+    }
+
+    sr.reveal(revealContainer.current, srConfig());
+  }, []);
+
+  const focusTab = () => {
+    if (tabs.current[tabFocus]) {
+      tabs.current[tabFocus].focus();
+      return;
+    }
+    if (tabFocus >= tabs.current.length) {
+      setTabFocus(0);
+    }
+    if (tabFocus < 0) {
+      setTabFocus(tabs.current.length - 1);
+    }
+  };
+
+  useEffect(() => focusTab(), [tabFocus]);
+
+  const onKeyDown = e => {
+    switch (e.key) {
+      case 'ArrowUp': {
+        e.preventDefault();
+        setTabFocus(tabFocus - 1);
+        break;
+      }
+      case 'ArrowDown': {
+        e.preventDefault();
+        setTabFocus(tabFocus + 1);
+        break;
+      }
+      default: {
+        break;
+      }
+    }
+  };
+
+  return (
+    <StyledSkillsSection id="skills" ref={revealContainer}>
+      <h2 className="numbered-heading">Skills & Technologies</h2>
+
+      <div className="inner">
+        <StyledTabList role="tablist" aria-label="Skills tabs" onKeyDown={e => onKeyDown(e)}>
+          {skillsData.map((skill, i) => (
+            <StyledTabButton
+              key={i}
+              isActive={activeTabId === i}
+              onClick={() => setActiveTabId(i)}
+              ref={el => (tabs.current[i] = el)}
+              id={`tab-${i}`}
+              role="tab"
+              tabIndex={activeTabId === i ? '0' : '-1'}
+              aria-selected={activeTabId === i ? true : false}
+              aria-controls={`panel-${i}`}>
+              <span>{skill.category}</span>
+            </StyledTabButton>
+          ))}
+          <StyledHighlight activeTabId={activeTabId} />
+        </StyledTabList>
+
+        <StyledTabPanels>
+          {skillsData.map((skill, i) => (
+            <StyledTabPanel
+              key={i}
+              id={`panel-${i}`}
+              role="tabpanel"
+              tabIndex={activeTabId === i ? '0' : '-1'}
+              aria-labelledby={`tab-${i}`}
+              aria-hidden={activeTabId !== i}
+              hidden={activeTabId !== i}>
+              <h3>{skill.category}</h3>
+              <ul>
+                {skill.skills.map((item, j) => (
+                  <li key={j}>{item}</li>
+                ))}
+              </ul>
+            </StyledTabPanel>
+          ))}
+        </StyledTabPanels>
+      </div>
+    </StyledSkillsSection>
+  );
+};
+
+export default Skills;

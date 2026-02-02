@@ -125,7 +125,7 @@ const About = () => {
     sr.reveal(revealContainer.current, srConfig());
   }, []);
 
-  const skills = ['Python', 'React', 'Vertex AI', 'RAG/CAG', 'MCP', 'Google ADK'];
+  const skills = ['JavaScript', 'React', 'Python', 'Vertex AI', 'RAG/CAG', 'StencilJS'];
 
   return (
     <StyledAboutSection id="about" ref={revealContainer}>
@@ -135,24 +135,24 @@ const About = () => {
         <StyledText>
           <div>
             <p>
-              Hello! My name is Krishna and I'm an AI Engineer with a passion for building
-              intelligent systems. My interest in AI started during my Computer Science studies at{' '}
-              <a href="https://vit.ac.in/">VIT</a>, where I developed a strong foundation in Data
-              Structures and Algorithms.
+              Hello! My name is Krishna and I'm a Frontend and AI Engineer with a passion for
+              building exceptional web experiences and intelligent systems. My journey started
+              during my Computer Science studies at <a href="https://vit.ac.in/">VIT</a>, where I
+              developed a strong foundation in Data Structures and Algorithms.
             </p>
 
             <p>
               I've had the privilege of working at{' '}
-              <a href="https://www.goldmansachs.com/">a major investment bank</a> and currently at{' '}
-              <a href="https://www.broadcom.com/">a leading tech company</a>. My main focus these
-              days is building next-generation AI features using RAG, MCP-based services, and
-              agent-based workflows.
+              <a href="https://www.goldmansachs.com/">Goldman Sachs</a> and currently contracting
+              at <a href="https://www.broadcom.com/">Broadcom</a> via Futurist Global. My work
+              spans building 16+ reusable web components using React, AngularJS, and StencilJS,
+              as well as developing AI features using RAG, MCP-based services, and agent workflows.
             </p>
 
             <p>
-              I'm a two-time hackathon winner at Broadcom's ValueOps AI Hackathon and have also won
-              the Gravathon 2023 physics-based hackathon. I enjoy writing about AI topics on my{' '}
-              <a href="https://prabhatkrishna.wordpress.com/">blog</a>.
+              I'm a two-time hackathon winner at Broadcom's ValueOps AI Hackathon and also won
+              Gravathon 2023, a physics simulation hackathon. I enjoy writing about AI and tech
+              on my <a href="https://prabhatkrishna.wordpress.com/">blog</a>.
             </p>
 
             <p>Here are a few technologies I've been working with recently:</p>
