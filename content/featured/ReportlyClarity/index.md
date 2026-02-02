@@ -1,6 +1,7 @@
 ---
 date: '1'
-title: 'Broadcom ValueOps Hackathon Winner'
+title: 'Reportly for Clarity'
+overline: 'Broadcom ValueOps Hackathon Winner'
 cover: './demo.gif'
 github: ''
 external: ''
@@ -12,4 +13,4 @@ tech:
   - React
 ---
 
-Two-time winner of the Broadcom ValueOps AI Hackathon. Built "Reportly for Clarity" — an AI-powered reporting tool that automates Jaspersoft report generation using RAG and agent-based workflows. The system uses intelligent agents to understand user queries, retrieve relevant enterprise data across 500K+ records, and generate comprehensive reports automatically.
+Two-time winner of the Broadcom ValueOps AI Hackathon. Built an AI-powered reporting tool that automates Jaspersoft report generation using RAG and agent-based workflows. The system uses intelligent agents to understand user queries, retrieve relevant enterprise data across 500K+ records, and generate comprehensive reports automatically.

@@ -314,6 +314,7 @@ const Featured = () => {
           node {
             frontmatter {
               title
+              overline
               cover {
                 childImageSharp {
                   gatsbyImageData(width: 700, placeholder: BLURRED, formats: [AUTO, WEBP, AVIF])
@@ -355,7 +356,7 @@ const Featured = () => {
         {featuredProjects &&
           featuredProjects.map(({ node }, i) => {
             const { frontmatter, html } = node;
-            const { external, title, tech, github, cover } = frontmatter;
+            const { external, title, tech, github, cover, overline } = frontmatter;
             const image = getImage(cover);
             const publicURL = cover?.publicURL;
 
@@ -363,7 +364,7 @@ const Featured = () => {
               <StyledProject key={i} ref={el => (revealProjects.current[i] = el)}>
                 <div className="project-content">
                   <div>
-                    <p className="project-overline">Featured Project</p>
+                    <p className="project-overline">{overline || 'Featured Project'}</p>
 
                     <h3 className="project-title">
                       <a href={external}>{title}</a>

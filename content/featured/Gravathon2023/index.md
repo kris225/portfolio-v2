@@ -1,7 +1,8 @@
 ---
 date: '3'
-title: 'Gravathon 2023 Physics Hackathon Winner'
-cover: './demo.jpg'
+title: 'Binary Star System Simulation'
+overline: 'Gravathon 2023 Physics Hackathon Winner'
+cover: './demo.gif'
 github: ''
 external: ''
 tech:

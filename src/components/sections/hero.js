@@ -70,11 +70,7 @@ const Hero = () => {
         <a href="https://www.broadcom.com/" target="_blank" rel="noreferrer">
           Broadcom
         </a>{' '}
-        via{' '}
-        <a href="https://www.futuristglobal.com/" target="_blank" rel="noreferrer">
-          Futurist Global
-        </a>
-        , developing next-generation AI features and reusable web components.
+        via Futurist Global, developing next-generation AI features and reusable web components.
       </p>
     </>
   );

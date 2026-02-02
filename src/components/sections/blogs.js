@@ -173,7 +173,7 @@ const Blogs = () => {
 
   return (
     <StyledBlogsSection>
-      <h2 ref={revealTitle}>Other Noteworthy Writing</h2>
+      <h2 ref={revealTitle}>Blogs</h2>
 
       <StyledBlogsGrid>
         {blogsData.map((blog, i) => (
@@ -182,7 +182,7 @@ const Blogs = () => {
               <header>
                 <div className="blog-top">
                   <div className="folder">
-                    <Icon name="Folder" />
+                    <Icon name="External" />
                   </div>
                   <div className="blog-links">
                     <a

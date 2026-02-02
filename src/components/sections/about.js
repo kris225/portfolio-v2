@@ -137,7 +137,8 @@ const About = () => {
             <p>
               Hello! My name is Krishna and I'm a Frontend and AI Engineer with a passion for
               building exceptional web experiences and intelligent systems. My journey started
-              during my Computer Science studies at <a href="https://vit.ac.in/">VIT</a>, where I
+              during my Computer Science studies at{' '}
+              <a href="https://vit.ac.in/">Vellore Institute of Technology (Vellore)</a>, where I
               developed a strong foundation in Data Structures and Algorithms.
             </p>
 
