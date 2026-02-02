@@ -125,7 +125,7 @@ const About = () => {
     sr.reveal(revealContainer.current, srConfig());
   }, []);
 
-  const skills = ['JavaScript (ES6+)', 'TypeScript', 'React', 'Eleventy', 'Node.js', 'WordPress'];
+  const skills = ['Python', 'React', 'Vertex AI', 'RAG/CAG', 'MCP', 'Google ADK'];
 
   return (
     <StyledAboutSection id="about" ref={revealContainer}>
@@ -135,33 +135,27 @@ const About = () => {
         <StyledText>
           <div>
             <p>
-              Hello! My name is Brittany and I enjoy creating things that live on the internet. My
-              interest in web development started back in 2012 when I decided to try editing custom
-              Tumblr themes — turns out hacking together a custom reblog button taught me a lot
-              about HTML &amp; CSS!
+              Hello! My name is Krishna and I'm an AI Engineer with a passion for building
+              intelligent systems. My interest in AI started during my Computer Science studies at{' '}
+              <a href="https://vit.ac.in/">VIT</a>, where I developed a strong foundation in Data
+              Structures and Algorithms.
             </p>
 
             <p>
-              Fast-forward to today, and I’ve had the privilege of working at{' '}
-              <a href="https://us.mullenlowe.com/">an advertising agency</a>,{' '}
-              <a href="https://starry.com/">a start-up</a>,{' '}
-              <a href="https://www.apple.com/">a huge corporation</a>, and{' '}
-              <a href="https://scout.camd.northeastern.edu/">a student-led design studio</a>. My
-              main focus these days is building accessible, inclusive products and digital
-              experiences at <a href="https://upstatement.com/">Upstatement</a> for a variety of
-              clients.
+              I've had the privilege of working at{' '}
+              <a href="https://www.goldmansachs.com/">a major investment bank</a> and currently at{' '}
+              <a href="https://www.broadcom.com/">a leading tech company</a>. My main focus these
+              days is building next-generation AI features using RAG, MCP-based services, and
+              agent-based workflows.
             </p>
 
             <p>
-              I also recently{' '}
-              <a href="https://www.newline.co/courses/build-a-spotify-connected-app">
-                launched a course
-              </a>{' '}
-              that covers everything you need to build a web app with the Spotify API using Node
-              &amp; React.
+              I'm a two-time hackathon winner at Broadcom's ValueOps AI Hackathon and have also won
+              the Gravathon 2023 physics-based hackathon. I enjoy writing about AI topics on my{' '}
+              <a href="https://prabhatkrishna.wordpress.com/">blog</a>.
             </p>
 
-            <p>Here are a few technologies I’ve been working with recently:</p>
+            <p>Here are a few technologies I've been working with recently:</p>
           </div>
 
           <ul className="skills-list">
