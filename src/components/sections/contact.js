@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { srConfig, email } from '@config';
 import sr from '@utils/sr';
 import { usePrefersReducedMotion } from '@hooks';
+import { Icon } from '@components/icons';
 
 const StyledContactSection = styled.section`
   max-width: 600px;
@@ -13,26 +14,13 @@ const StyledContactSection = styled.section`
     margin: 0 auto 50px;
   }
 
-  .overline {
-    display: block;
-    margin-bottom: 20px;
-    color: var(--green);
-    font-family: var(--font-mono);
-    font-size: var(--fz-md);
-    font-weight: 400;
-
-    &:before {
-      bottom: 0;
-      font-size: var(--fz-sm);
-    }
-
-    &:after {
-      display: none;
-    }
+  .numbered-heading {
+    justify-content: center;
   }
 
   .title {
     font-size: clamp(40px, 5vw, 60px);
+    margin-top: 10px;
   }
 
   .button-container {
@@ -46,11 +34,19 @@ const StyledContactSection = styled.section`
   .email-link,
   .phone-link {
     ${({ theme }) => theme.mixins.bigButton};
+    padding: 1.25rem 1.75rem;
+    line-height: 1;
   }
 
   .phone-link {
-    position: relative;
-    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    svg {
+      width: 18px;
+      height: 18px;
+    }
   }
 
   .copied-tooltip {
@@ -64,13 +60,14 @@ const StyledContactSection = styled.section`
     border-radius: 4px;
     font-size: var(--fz-xs);
     font-family: var(--font-mono);
+    white-space: nowrap;
   }
 `;
 
 const Contact = () => {
   const revealContainer = useRef(null);
   const prefersReducedMotion = usePrefersReducedMotion();
-  const [copied, setCopied] = useState(false);
+  const [copiedField, setCopiedField] = useState(null);
   const phoneNumber = '+91 7032297414';
 
   useEffect(() => {
@@ -81,32 +78,34 @@ const Contact = () => {
     sr.reveal(revealContainer.current, srConfig());
   }, []);
 
-  const copyToClipboard = () => {
-    navigator.clipboard.writeText(phoneNumber).then(() => {
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
+  const handleCopy = (value, field) => {
+    if (typeof navigator === 'undefined' || !navigator.clipboard) {
+      return;
+    }
+
+    navigator.clipboard.writeText(value).then(() => {
+      setCopiedField(field);
+      setTimeout(() => setCopiedField(null), 2000);
     });
   };
 
   return (
     <StyledContactSection id="contact" ref={revealContainer}>
-      <h2 className="numbered-heading overline">What's Next?</h2>
-
-      <h2 className="title">Get In Touch</h2>
-
-      <p>
-        I'm always interested in hearing about new opportunities, collaborations, or just having a
-        chat about AI and technology. Whether you have a question or just want to say hi, feel free
-        to reach out!
-      </p>
+      <h2 className="numbered-heading">Contact</h2>
 
       <div className="button-container">
         <a className="email-link" href={`mailto:${email}`}>
-          Say Hello
+          Email
         </a>
-        <button className="phone-link" onClick={copyToClipboard}>
-          {copied && <span className="copied-tooltip">Copied!</span>}
-          Phone
+
+        <button
+          type="button"
+          className="phone-link"
+          onClick={() => handleCopy(phoneNumber, 'phone')}
+          aria-label="Copy phone number">
+          <Icon name="Copy" />
+          <span>Phone</span>
+          {copiedField === 'phone' && <span className="copied-tooltip">Copied!</span>}
         </button>
       </div>
     </StyledContactSection>

@@ -13,4 +13,5 @@ export { default as Jobs } from './sections/jobs';
 export { default as Skills } from './sections/skills';
 export { default as Featured } from './sections/featured';
 export { default as Blogs } from './sections/blogs';
+export { default as Certifications } from './sections/certifications';
 export { default as Contact } from './sections/contact';

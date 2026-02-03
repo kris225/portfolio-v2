@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import styled, { ThemeProvider } from 'styled-components';
 import { Head, Loader, Nav, Social, Email, Footer } from '@components';
@@ -10,9 +10,51 @@ const StyledContent = styled.div`
   min-height: 100vh;
 `;
 
+const StyledCursorGlow = styled.div`
+  position: fixed;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+  background: radial-gradient(
+    circle,
+    rgba(100, 255, 218, 0.07) 0%,
+    rgba(100, 255, 218, 0.03) 30%,
+    transparent 70%
+  );
+  transform: translate(-50%, -50%);
+  transition: opacity 0.3s ease;
+
+  @media (max-width: 1080px) {
+    display: none;
+  }
+`;
+
 const Layout = ({ children, location }) => {
   const isHome = location.pathname === '/';
   const [isLoading, setIsLoading] = useState(isHome);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [isLargeScreen, setIsLargeScreen] = useState(false);
+
+  const handleMouseMove = useCallback(e => {
+    setMousePosition({ x: e.clientX, y: e.clientY });
+  }, []);
+
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsLargeScreen(window.innerWidth > 1080);
+    };
+
+    checkScreenSize();
+    window.addEventListener('resize', checkScreenSize);
+    window.addEventListener('mousemove', handleMouseMove);
+
+    return () => {
+      window.removeEventListener('resize', checkScreenSize);
+      window.removeEventListener('mousemove', handleMouseMove);
+    };
+  }, [handleMouseMove]);
 
   // Sets target="_blank" rel="noopener noreferrer" on external links
   const handleExternalLinks = () => {
@@ -53,6 +95,15 @@ const Layout = ({ children, location }) => {
       <div id="root">
         <ThemeProvider theme={theme}>
           <GlobalStyle />
+
+          {isLargeScreen && (
+            <StyledCursorGlow
+              style={{
+                left: mousePosition.x,
+                top: mousePosition.y,
+              }}
+            />
+          )}
 
           <a className="skip-to-content" href="#content">
             Skip to Content

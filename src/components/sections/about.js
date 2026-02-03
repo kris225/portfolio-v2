@@ -135,25 +135,25 @@ const About = () => {
         <StyledText>
           <div>
             <p>
-              Hello! My name is Krishna and I'm a Frontend and AI Engineer with a passion for
-              building exceptional web experiences and intelligent systems. My journey started
-              during my Computer Science studies at{' '}
+              Hello! My name is Krishna. I'm a Frontend and AI Engineer with a passion for building
+              exceptional web experiences and intelligent systems. My journey started during my
+              Computer Science studies at{' '}
               <a href="https://vit.ac.in/">Vellore Institute of Technology (Vellore)</a>, where I
               developed a strong foundation in Data Structures and Algorithms.
             </p>
 
             <p>
               I've had the privilege of working at{' '}
-              <a href="https://www.goldmansachs.com/">Goldman Sachs</a> and currently contracting
-              at <a href="https://www.broadcom.com/">Broadcom</a> via Futurist Global. My work
-              spans building 16+ reusable web components using React, AngularJS, and StencilJS,
-              as well as developing AI features using RAG, MCP-based services, and agent workflows.
+              <a href="https://www.goldmansachs.com/">Goldman Sachs</a> and currently contracting at{' '}
+              <a href="https://www.broadcom.com/">Broadcom</a> via Futurist Global. My work spans
+              building 16+ reusable web components using React, AngularJS, and StencilJS, as well as
+              developing AI features using RAG, MCP-based services, and agent workflows.
             </p>
 
             <p>
-              I'm a two-time hackathon winner at Broadcom's ValueOps AI Hackathon and also won
-              Gravathon 2023, a physics simulation hackathon. I enjoy writing about AI and tech
-              on my <a href="https://prabhatkrishna.wordpress.com/">blog</a>.
+              I'm a two-time winner at Broadcom's ValueOps AI Hackathon and also won Gravathon 2023,
+              a physics simulation hackathon. I enjoy writing about AI and tech on my{' '}
+              <a href="https://prabhatkrishna.wordpress.com/">blog</a>.
             </p>
 
             <p>Here are a few technologies I've been working with recently:</p>

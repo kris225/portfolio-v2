@@ -18,13 +18,18 @@ const StyledBlogsSection = styled.section`
 const StyledBlogsGrid = styled.ul`
   ${({ theme }) => theme.mixins.resetList};
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   grid-gap: 15px;
   position: relative;
   margin-top: 50px;
+  width: 100%;
 
-  @media (max-width: 1080px) {
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  @media (max-width: 900px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
   }
 `;
 
@@ -139,19 +144,19 @@ const blogsData = [
     description:
       'Exploring Cache-Augmented Generation as an alternative to RAG for superior performance in LLM applications.',
     url: 'https://prabhatkrishna.wordpress.com/2024/12/25/the-case-of-cag/',
-    date: 'Dec 25, 2024',
+    date: 'Dec 25, 2025',
   },
   {
-    title: "Gemini: Google's Multimodal Moonshot",
+    title: 'Gemini: Google\'s Multimodal Moonshot',
     description:
-      "Technical analysis of Google's Gemini AI model family and its architectural innovations.",
+      'Technical analysis of Google\'s Gemini AI model family and its architectural innovations.',
     url: 'https://prabhatkrishna.wordpress.com/2024/02/21/gemini-googles-multimodal-moonshot/',
     date: 'Feb 21, 2024',
   },
   {
     title: 'Llama 2: How Meta Gave Away the Recipe (Mostly)',
     description:
-      "Deep dive into Meta's Llama 2 release, training methodology, and licensing nuances.",
+      'Deep dive into Meta\'s Llama 2 release, training methodology, and licensing nuances.',
     url: 'https://prabhatkrishna.wordpress.com/2023/07/21/llama-2-how-meta-gave-away-the-recipe-mostly/',
     date: 'Jul 21, 2023',
   },
@@ -172,8 +177,10 @@ const Blogs = () => {
   }, []);
 
   return (
-    <StyledBlogsSection>
-      <h2 ref={revealTitle}>Blogs</h2>
+    <StyledBlogsSection id="blogs">
+      <h2 ref={revealTitle} className="numbered-heading">
+        Blogs
+      </h2>
 
       <StyledBlogsGrid>
         {blogsData.map((blog, i) => (
@@ -182,7 +189,7 @@ const Blogs = () => {
               <header>
                 <div className="blog-top">
                   <div className="folder">
-                    <Icon name="External" />
+                    <Icon name="Article" />
                   </div>
                   <div className="blog-links">
                     <a

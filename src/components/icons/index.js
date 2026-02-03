@@ -1,4 +1,5 @@
 export { default as IconAppStore } from './appstore';
+export { default as IconArticle } from './article';
 export { default as IconBookmark } from './bookmark';
 export { default as IconCodepen } from './codepen';
 export { default as IconDownload } from './download';
@@ -15,3 +16,4 @@ export { default as IconLogo } from './logo';
 export { default as IconPlayStore } from './playstore';
 export { default as IconStar } from './star';
 export { default as IconTwitter } from './twitter';
+export { default as IconCopy } from './copy';
