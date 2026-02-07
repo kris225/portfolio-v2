@@ -1,7 +1,7 @@
 ---
 date: '2024-09-01'
 title: 'Frontend & AI Engineer'
-company: 'Broadcom (via Futurist Global)'
+company: 'Broadcom'
 location: 'Hyderabad, India'
 range: 'Sep 2024 - Present'
 url: 'https://www.broadcom.com/'

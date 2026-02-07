@@ -307,27 +307,20 @@ const StyledViewDemoButton = styled.button`
   display: none;
 
   @media (max-width: 768px) {
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    justify-content: center;
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    z-index: 6;
-    width: 40px;
-    height: 40px;
-    padding: 0;
+    margin-top: 10px;
+    padding: 8px 14px;
     border: 1px solid var(--green);
-    border-radius: 50%;
-    background-color: var(--navy);
+    border-radius: var(--border-radius);
+    background-color: transparent;
     color: var(--green);
+    font-family: var(--font-mono);
+    font-size: var(--fz-xxs);
     cursor: pointer;
     transition: var(--transition);
-
-    svg {
-      width: 20px;
-      height: 20px;
-    }
+    position: relative;
+    z-index: 2;
 
     &:hover,
     &:focus {
@@ -455,14 +448,6 @@ const Featured = () => {
 
             return (
               <StyledProject key={i} ref={el => (revealProjects.current[i] = el)}>
-                {publicURL && (
-                  <StyledViewDemoButton
-                    onClick={() => setModalGif(publicURL)}
-                    aria-label="View Demo">
-                    <Icon name="Eye" />
-                  </StyledViewDemoButton>
-                )}
-
                 <div className="project-content">
                   <div>
                     <p className="project-overline">{overline || 'Featured Project'}</p>
@@ -494,6 +479,12 @@ const Featured = () => {
                         </a>
                       )}
                     </div>
+
+                    {publicURL && (
+                      <StyledViewDemoButton onClick={() => setModalGif(publicURL)}>
+                        Preview Project
+                      </StyledViewDemoButton>
+                    )}
                   </div>
                 </div>
 

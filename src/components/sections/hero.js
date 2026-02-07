@@ -11,6 +11,7 @@ const StyledHeroSection = styled.section`
   min-height: 100vh;
   height: 100vh;
   padding: 0;
+  position: relative;
 
   @media (max-height: 700px) and (min-width: 700px), (max-width: 360px) {
     height: auto;
@@ -43,6 +44,72 @@ const StyledHeroSection = styled.section`
   .email-link {
     ${({ theme }) => theme.mixins.bigButton};
     margin-top: 50px;
+  }
+`;
+
+const StyledScrollArrow = styled.a`
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border: 1px solid var(--green);
+  border-radius: 50%;
+  background-color: transparent;
+  color: var(--green);
+  cursor: pointer;
+  transition: var(--transition);
+  animation: bounce 2s infinite;
+
+  @media (max-width: 768px) {
+    bottom: 20px;
+    width: 45px;
+    height: 45px;
+  }
+
+  @media (max-width: 480px) {
+    bottom: 15px;
+    width: 40px;
+    height: 40px;
+  }
+
+  @media (max-height: 700px) {
+    display: none;
+  }
+
+  &:hover,
+  &:focus {
+    background-color: var(--green-tint);
+    transform: translate(-50%, 3px);
+  }
+
+  svg {
+    width: 20px;
+    height: 20px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  @keyframes bounce {
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+      transform: translate(-50%, 0);
+    }
+    40% {
+      transform: translate(-50%, -10px);
+    }
+    60% {
+      transform: translate(-50%, -5px);
+    }
   }
 `;
 
@@ -95,6 +162,12 @@ const Hero = () => {
             ))}
         </TransitionGroup>
       )}
+
+      <StyledScrollArrow href="#about" aria-label="Scroll down">
+        <svg viewBox="0 0 24 24">
+          <polyline points="6 9 12 15 18 9" />
+        </svg>
+      </StyledScrollArrow>
     </StyledHeroSection>
   );
 };
