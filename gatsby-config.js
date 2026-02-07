@@ -5,7 +5,7 @@ module.exports = {
   siteMetadata: {
     title: 'Krishna Gundimeda',
     description:
-      'Krishna Gundimeda is an AI Engineer with experience building production-grade AI and web systems, with a strong foundation in Data Structures and Algorithms.',
+      'Krishna Gundimeda is a Frontend and AI Engineer with experience building production-grade web applications and intelligent systems, with a strong foundation in Data Structures and Algorithms.',
     siteUrl: 'https://krishnagundimeda.com', // No trailing slash allowed!
     image: '/og.png', // Path to your image you placed in the 'static' folder
   },

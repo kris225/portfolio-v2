@@ -152,8 +152,7 @@ const About = () => {
 
             <p>
               I'm a two-time winner at Broadcom's ValueOps AI Hackathon and also won Gravathon 2023,
-              a physics simulation hackathon. I enjoy writing about AI and tech on my{' '}
-              <a href="https://prabhatkrishna.wordpress.com/">blog</a>.
+              a physics simulation hackathon.
             </p>
 
             <p>Here are a few technologies I've been working with recently:</p>
@@ -168,7 +167,7 @@ const About = () => {
           <div className="wrapper">
             <StaticImage
               className="img"
-              src="../../images/me.jpg"
+              src="../../images/me.jpeg"
               width={500}
               quality={95}
               formats={['AUTO', 'WEBP', 'AVIF']}

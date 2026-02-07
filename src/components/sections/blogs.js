@@ -21,7 +21,6 @@ const StyledBlogsGrid = styled.ul`
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 15px;
   position: relative;
-  margin-top: 50px;
   width: 100%;
 
   @media (max-width: 900px) {
@@ -68,7 +67,7 @@ const StyledBlog = styled.li`
 
   .blog-top {
     ${({ theme }) => theme.mixins.flexBetween};
-    margin-bottom: 35px;
+    margin-bottom: 30px;
 
     .folder {
       color: var(--green);
@@ -144,7 +143,7 @@ const blogsData = [
     description:
       'Exploring Cache-Augmented Generation as an alternative to RAG for superior performance in LLM applications.',
     url: 'https://prabhatkrishna.wordpress.com/2024/12/25/the-case-of-cag/',
-    date: 'Dec 25, 2025',
+    date: 'Dec 25, 2024',
   },
   {
     title: 'Gemini: Google\'s Multimodal Moonshot',

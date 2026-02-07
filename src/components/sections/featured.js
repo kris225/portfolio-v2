@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import styled from 'styled-components';
@@ -111,7 +111,7 @@ const StyledProject = styled.li`
     }
 
     @media (max-width: 480px) {
-      padding: 30px 25px 20px;
+      padding: 25px 25px 20px;
     }
   }
 
@@ -303,6 +303,81 @@ const StyledProject = styled.li`
   }
 `;
 
+const StyledViewDemoButton = styled.button`
+  display: none;
+
+  @media (max-width: 768px) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 6;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border: 1px solid var(--green);
+    border-radius: 50%;
+    background-color: var(--navy);
+    color: var(--green);
+    cursor: pointer;
+    transition: var(--transition);
+
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    &:hover,
+    &:focus {
+      background-color: var(--green-tint);
+    }
+  }
+`;
+
+const StyledModal = styled.div`
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.85);
+
+  .modal-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    z-index: 101;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border: 1px solid var(--green);
+    border-radius: 50%;
+    background-color: transparent;
+    color: var(--green);
+    font-size: 20px;
+    cursor: pointer;
+    transition: var(--transition);
+
+    &:hover,
+    &:focus {
+      background-color: var(--green-tint);
+    }
+  }
+
+  img {
+    max-width: 90vw;
+    max-height: 80vh;
+    object-fit: contain;
+    border-radius: var(--border-radius);
+  }
+`;
+
 const Featured = () => {
   const data = useStaticQuery(graphql`
     {
@@ -333,6 +408,7 @@ const Featured = () => {
   `);
 
   const featuredProjects = data.featured.edges.filter(({ node }) => node);
+  const [modalGif, setModalGif] = useState(null);
   const revealTitle = useRef(null);
   const revealProjects = useRef([]);
   const prefersReducedMotion = usePrefersReducedMotion();
@@ -345,6 +421,23 @@ const Featured = () => {
     sr.reveal(revealTitle.current, srConfig());
     revealProjects.current.forEach((ref, i) => sr.reveal(ref, srConfig(i * 100)));
   }, []);
+
+  const handleKeyDown = useCallback(e => {
+    if (e.key === 'Escape') {
+      setModalGif(null);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (modalGif) {
+      document.addEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = 'hidden';
+    }
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = '';
+    };
+  }, [modalGif, handleKeyDown]);
 
   return (
     <section id="projects">
@@ -362,6 +455,14 @@ const Featured = () => {
 
             return (
               <StyledProject key={i} ref={el => (revealProjects.current[i] = el)}>
+                {publicURL && (
+                  <StyledViewDemoButton
+                    onClick={() => setModalGif(publicURL)}
+                    aria-label="View Demo">
+                    <Icon name="Eye" />
+                  </StyledViewDemoButton>
+                )}
+
                 <div className="project-content">
                   <div>
                     <p className="project-overline">{overline || 'Featured Project'}</p>
@@ -409,6 +510,17 @@ const Featured = () => {
             );
           })}
       </StyledProjectsGrid>
+
+      {modalGif && (
+        <StyledModal onClick={() => setModalGif(null)}>
+          <button className="modal-close" aria-label="Close modal">
+            &#x2715;
+          </button>
+          <div role="presentation" onClick={e => e.stopPropagation()}>
+            <img src={modalGif} alt="Project demo" />
+          </div>
+        </StyledModal>
+      )}
     </section>
   );
 };

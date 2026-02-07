@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useLayoutEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { srConfig } from '@config';
 import sr from '@utils/sr';
@@ -107,14 +107,11 @@ const StyledHighlight = styled.div`
   @media (max-width: 600px) {
     top: auto;
     bottom: 0;
-    width: 100%;
-    max-width: 120px;
+    width: ${({ highlightWidth }) => highlightWidth}px;
+    max-width: none;
     height: 2px;
-    margin-left: 50px;
-    transform: translateX(calc(${({ activeTabId }) => activeTabId} * 120px));
-  }
-  @media (max-width: 480px) {
-    margin-left: 25px;
+    margin-left: 0;
+    transform: translateX(${({ highlightLeft }) => highlightLeft}px);
   }
 `;
 
@@ -192,6 +189,7 @@ const skillsData = [
 const Skills = () => {
   const [activeTabId, setActiveTabId] = useState(0);
   const [tabFocus, setTabFocus] = useState(null);
+  const [highlightStyle, setHighlightStyle] = useState({ left: 0, width: 0 });
   const tabs = useRef([]);
   const revealContainer = useRef(null);
   const prefersReducedMotion = usePrefersReducedMotion();
@@ -203,6 +201,21 @@ const Skills = () => {
 
     sr.reveal(revealContainer.current, srConfig());
   }, []);
+
+  useLayoutEffect(() => {
+    const updateHighlight = () => {
+      const activeTab = tabs.current[activeTabId];
+      if (activeTab) {
+        setHighlightStyle({
+          left: activeTab.offsetLeft,
+          width: activeTab.offsetWidth,
+        });
+      }
+    };
+    updateHighlight();
+    window.addEventListener('resize', updateHighlight);
+    return () => window.removeEventListener('resize', updateHighlight);
+  }, [activeTabId]);
 
   const focusTab = () => {
     if (tabs.current[tabFocus]) {
@@ -257,7 +270,11 @@ const Skills = () => {
               <span>{skill.category}</span>
             </StyledTabButton>
           ))}
-          <StyledHighlight activeTabId={activeTabId} />
+          <StyledHighlight
+            activeTabId={activeTabId}
+            highlightLeft={highlightStyle.left}
+            highlightWidth={highlightStyle.width}
+          />
         </StyledTabList>
 
         <StyledTabPanels>

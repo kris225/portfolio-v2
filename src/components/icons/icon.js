@@ -7,6 +7,7 @@ import {
   IconCodepen,
   IconCopy,
   IconExternal,
+  IconEye,
   IconFolder,
   IconFork,
   IconGitHub,
@@ -33,6 +34,8 @@ const Icon = ({ name }) => {
       return <IconCopy />;
     case 'External':
       return <IconExternal />;
+    case 'Eye':
+      return <IconEye />;
     case 'Folder':
       return <IconFolder />;
     case 'Fork':

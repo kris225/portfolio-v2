@@ -13,4 +13,4 @@ tech:
   - React
 ---
 
-Two-time winner of the Broadcom ValueOps AI Hackathon. Built an AI-powered reporting tool that automates Jaspersoft report generation using RAG and agent-based workflows. The system uses intelligent agents to understand user queries, retrieve relevant enterprise data across 500K+ records, and generate comprehensive reports automatically.
+Project won Broadcom's ValueOps AI Hackathon. Built an AI-powered reporting tool that automates Jaspersoft report generation using agent-based workflows. Uses intelligent agents to understand user queries, retrieve relevant enterprise data across large datasets, to generate UI of the report dynamically.

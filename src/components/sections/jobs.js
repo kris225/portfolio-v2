@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useLayoutEffect, useRef } from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 import { CSSTransition } from 'react-transition-group';
 import styled from 'styled-components';
@@ -115,14 +115,11 @@ const StyledHighlight = styled.div`
   @media (max-width: 600px) {
     top: auto;
     bottom: 0;
-    width: 100%;
-    max-width: var(--tab-width);
+    width: ${({ highlightWidth }) => highlightWidth}px;
+    max-width: none;
     height: 2px;
-    margin-left: 50px;
-    transform: translateX(calc(${({ activeTabId }) => activeTabId} * var(--tab-width)));
-  }
-  @media (max-width: 480px) {
-    margin-left: 25px;
+    margin-left: 0;
+    transform: translateX(${({ highlightLeft }) => highlightLeft}px);
   }
 `;
 
@@ -146,7 +143,7 @@ const StyledTabPanel = styled.div`
   }
 
   h3 {
-    margin-bottom: 2px;
+    margin-bottom: 10px;
     font-size: var(--fz-xxl);
     font-weight: 500;
     line-height: 1.3;
@@ -191,6 +188,7 @@ const Jobs = () => {
 
   const [activeTabId, setActiveTabId] = useState(0);
   const [tabFocus, setTabFocus] = useState(null);
+  const [highlightStyle, setHighlightStyle] = useState({ left: 0, width: 0 });
   const tabs = useRef([]);
   const revealContainer = useRef(null);
   const prefersReducedMotion = usePrefersReducedMotion();
@@ -202,6 +200,21 @@ const Jobs = () => {
 
     sr.reveal(revealContainer.current, srConfig());
   }, []);
+
+  useLayoutEffect(() => {
+    const updateHighlight = () => {
+      const activeTab = tabs.current[activeTabId];
+      if (activeTab) {
+        setHighlightStyle({
+          left: activeTab.offsetLeft,
+          width: activeTab.offsetWidth,
+        });
+      }
+    };
+    updateHighlight();
+    window.addEventListener('resize', updateHighlight);
+    return () => window.removeEventListener('resize', updateHighlight);
+  }, [activeTabId]);
 
   const focusTab = () => {
     if (tabs.current[tabFocus]) {
@@ -266,7 +279,11 @@ const Jobs = () => {
                 </StyledTabButton>
               );
             })}
-          <StyledHighlight activeTabId={activeTabId} />
+          <StyledHighlight
+            activeTabId={activeTabId}
+            highlightLeft={highlightStyle.left}
+            highlightWidth={highlightStyle.width}
+          />
         </StyledTabList>
 
         <StyledTabPanels>

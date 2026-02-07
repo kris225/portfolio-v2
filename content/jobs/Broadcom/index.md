@@ -7,7 +7,6 @@ range: 'Sep 2024 - Present'
 url: 'https://www.broadcom.com/'
 ---
 
-- Developed next-generation AI features for Broadcom products (ICE, Clarity), building MCP-based services with RAG to query and summarize data across 500K+ enterprise records
-- Built and integrated 16+ reusable web components using React, AngularJS, and StencilJS, supporting multiple Clarity modules used by large enterprise customers
-- Designed agent-based workflows using Google AI Agent Development Kit (ADK) to automate Jaspersoft reporting and data retrieval
-- Implemented internal AI tools using Vertex AI, CAG pipelines and A2A architectures to automate report generation and contextual insights
+- Enabled intelligent querying and summarization across 500K+ enterprise records by shipping MCP-based services for Broadcom's ICE and Clarity products
+- Accelerated migration of the front-end codebase primarily written in Angular 1.x to Stencil JS, a web component based framework by converting 16+ reusable components and workflows
+- Improved data retrieval accuracy and reduced stakeholder turnaround time by implementing internal AI tools powered by Vertex AI, RAG pipelines, and A2A architectures for automated report generation and contextual insights

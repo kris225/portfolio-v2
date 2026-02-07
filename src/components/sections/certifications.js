@@ -10,17 +10,17 @@ const StyledCertificationsSection = styled.section`
 
   .cert-list {
     ${({ theme }) => theme.mixins.resetList};
-    margin-top: 30px;
+    margin-top: 0;
   }
 
   .cert-item {
-    margin-bottom: 24px;
+    margin-bottom: 20px;
   }
 
   .cert-title {
     font-size: var(--fz-xl);
     color: var(--lightest-slate);
-    margin-bottom: 8px;
+    margin-bottom: 10px;
 
     a {
       ${({ theme }) => theme.mixins.inlineLink};
@@ -31,7 +31,7 @@ const StyledCertificationsSection = styled.section`
     color: var(--green);
     font-family: var(--font-mono);
     font-size: var(--fz-xs);
-    margin-bottom: 8px;
+    margin-bottom: 10px;
   }
 
   .cert-description {

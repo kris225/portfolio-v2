@@ -7,27 +7,17 @@ import { Icon } from '@components/icons';
 
 const StyledContactSection = styled.section`
   max-width: 600px;
-  margin: 0 auto 100px;
+  margin: 0 auto;
   text-align: center;
-
-  @media (max-width: 768px) {
-    margin: 0 auto 50px;
-  }
 
   .numbered-heading {
     justify-content: center;
-  }
-
-  .title {
-    font-size: clamp(40px, 5vw, 60px);
-    margin-top: 10px;
   }
 
   .button-container {
     display: flex;
     justify-content: center;
     gap: 20px;
-    margin-top: 50px;
     flex-wrap: wrap;
   }
 
