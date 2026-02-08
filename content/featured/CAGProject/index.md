@@ -3,6 +3,7 @@ date: '2'
 title: 'CAG - Cache-Augmented Generation'
 overline: 'Personal Project'
 cover: './demo.gif'
+hasProjectPreview: true
 external: ''
 tech:
   - Python

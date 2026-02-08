@@ -389,6 +389,7 @@ const Featured = () => {
                 }
                 publicURL
               }
+              hasProjectPreview
               tech
               github
               external
@@ -442,7 +443,8 @@ const Featured = () => {
         {featuredProjects &&
           featuredProjects.map(({ node }, i) => {
             const { frontmatter, html } = node;
-            const { external, title, tech, github, cover, overline } = frontmatter;
+            const { external, title, tech, github, cover, overline, hasProjectPreview } =
+              frontmatter;
             const image = getImage(cover);
             const publicURL = cover?.publicURL;
 
@@ -480,7 +482,7 @@ const Featured = () => {
                       )}
                     </div>
 
-                    {publicURL && (
+                    {publicURL && hasProjectPreview && (
                       <StyledViewDemoButton onClick={() => setModalGif(publicURL)}>
                         Preview Project
                       </StyledViewDemoButton>

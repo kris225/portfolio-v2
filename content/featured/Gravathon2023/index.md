@@ -3,6 +3,7 @@ date: '3'
 title: 'Binary Star System Simulation'
 overline: 'Gravathon 2023 Physics Hackathon Winner'
 cover: './demo.gif'
+hasProjectPreview: false
 github: ''
 external: ''
 tech:

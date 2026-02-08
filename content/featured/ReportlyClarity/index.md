@@ -3,6 +3,7 @@ date: '1'
 title: 'Reportly for Clarity PPM'
 overline: 'Broadcom ValueOps Hackathon Winner'
 cover: './demo.gif'
+hasProjectPreview: true
 github: ''
 external: ''
 tech:
