@@ -74,7 +74,13 @@ const Layout = ({ children, location }) => {
       return;
     }
 
-    if (location.hash) {
+    // Prevent auto-scroll on initial page load
+    if (window.history.scrollRestoration) {
+      window.history.scrollRestoration = 'manual';
+    }
+    window.scrollTo(0, 0);
+
+    if (location.hash && location.pathname !== '/') {
       const id = location.hash.substring(1); // location.hash without the '#'
       setTimeout(() => {
         const el = document.getElementById(id);

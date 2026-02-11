@@ -47,7 +47,7 @@ const StyledHeroSection = styled.section`
   }
 `;
 
-const StyledScrollArrow = styled.a`
+const StyledScrollArrow = styled.button`
   position: absolute;
   bottom: 40px;
   left: 50%;
@@ -56,6 +56,7 @@ const StyledScrollArrow = styled.a`
   justify-content: center;
   width: 50px;
   height: 50px;
+  padding: 0;
   border: 1px solid var(--green);
   border-radius: 50%;
   background-color: transparent;
@@ -126,6 +127,13 @@ const Hero = () => {
     return () => clearTimeout(timeout);
   }, []);
 
+  const scrollToAbout = () => {
+    const aboutSection = document.getElementById('about');
+    if (aboutSection) {
+      aboutSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   const one = <h1>Hi, my name is</h1>;
   const two = <h2 className="big-heading">Krishna Gundimeda.</h2>;
   const three = <h3 className="big-heading">I build AI & web experiences.</h3>;
@@ -163,7 +171,7 @@ const Hero = () => {
         </TransitionGroup>
       )}
 
-      <StyledScrollArrow href="#about" aria-label="Scroll down">
+      <StyledScrollArrow onClick={scrollToAbout} aria-label="Scroll down" as="button">
         <svg viewBox="0 0 24 24">
           <polyline points="6 9 12 15 18 9" />
         </svg>

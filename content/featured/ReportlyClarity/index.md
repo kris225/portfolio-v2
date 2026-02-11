@@ -4,6 +4,7 @@ title: 'Reportly for Clarity PPM'
 overline: 'Broadcom ValueOps Hackathon Winner'
 cover: './demo.gif'
 hasProjectPreview: true
+videoUrl: '/caghack.mp4'
 github: ''
 external: ''
 tech:

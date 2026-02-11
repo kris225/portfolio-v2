@@ -256,76 +256,46 @@ const StyledProject = styled.li`
     a {
       width: 100%;
       height: 100%;
-      background-color: var(--green);
       border-radius: var(--border-radius);
       vertical-align: middle;
 
       &:hover,
       &:focus {
-        background: transparent;
         outline: 0;
-
-        &:before,
-        .img {
-          background: transparent;
-          filter: none;
-        }
-      }
-
-      &:before {
-        content: '';
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        z-index: 3;
-        transition: var(--transition);
-        background-color: var(--navy);
-        mix-blend-mode: screen;
       }
     }
 
     .img {
       border-radius: var(--border-radius);
-      mix-blend-mode: multiply;
-      filter: grayscale(100%) contrast(1) brightness(90%);
 
       @media (max-width: 768px) {
         object-fit: cover;
         width: auto;
         height: 100%;
-        filter: grayscale(100%) contrast(1) brightness(50%);
       }
     }
   }
 `;
 
 const StyledViewDemoButton = styled.button`
-  display: none;
+  display: inline-flex;
+  align-items: center;
+  margin-top: 10px;
+  padding: 8px 14px;
+  border: 1px solid var(--green);
+  border-radius: var(--border-radius);
+  background-color: transparent;
+  color: var(--green);
+  font-family: var(--font-mono);
+  font-size: var(--fz-xxs);
+  cursor: pointer;
+  transition: var(--transition);
+  position: relative;
+  z-index: 2;
 
-  @media (max-width: 768px) {
-    display: inline-flex;
-    align-items: center;
-    margin-top: 10px;
-    padding: 8px 14px;
-    border: 1px solid var(--green);
-    border-radius: var(--border-radius);
-    background-color: transparent;
-    color: var(--green);
-    font-family: var(--font-mono);
-    font-size: var(--fz-xxs);
-    cursor: pointer;
-    transition: var(--transition);
-    position: relative;
-    z-index: 2;
-
-    &:hover,
-    &:focus {
-      background-color: var(--green-tint);
-    }
+  &:hover,
+  &:focus {
+    background-color: var(--green-tint);
   }
 `;
 
@@ -336,7 +306,7 @@ const StyledModal = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgba(0, 0, 0, 0.85);
+  background-color: rgba(0, 0, 0, 0.9);
 
   .modal-close {
     position: absolute;
@@ -363,6 +333,7 @@ const StyledModal = styled.div`
     }
   }
 
+  video,
   img {
     max-width: 90vw;
     max-height: 80vh;
@@ -393,6 +364,7 @@ const Featured = () => {
               tech
               github
               external
+              videoUrl
             }
             html
           }
@@ -443,10 +415,11 @@ const Featured = () => {
         {featuredProjects &&
           featuredProjects.map(({ node }, i) => {
             const { frontmatter, html } = node;
-            const { external, title, tech, github, cover, overline, hasProjectPreview } =
+            const { external, title, tech, github, cover, overline, hasProjectPreview, videoUrl } =
               frontmatter;
             const image = getImage(cover);
             const publicURL = cover?.publicURL;
+            const previewUrl = videoUrl || publicURL;
 
             return (
               <StyledProject key={i} ref={el => (revealProjects.current[i] = el)}>
@@ -477,8 +450,8 @@ const Featured = () => {
                       </div>
                     )}
 
-                    {publicURL && hasProjectPreview && (
-                      <StyledViewDemoButton onClick={() => setModalGif(publicURL)}>
+                    {previewUrl && hasProjectPreview && (
+                      <StyledViewDemoButton onClick={() => setModalGif(previewUrl)}>
                         Preview Project
                       </StyledViewDemoButton>
                     )}
@@ -505,7 +478,13 @@ const Featured = () => {
             &#x2715;
           </button>
           <div role="presentation" onClick={e => e.stopPropagation()}>
-            <img src={modalGif} alt="Project demo" />
+            {modalGif.endsWith('.mp4') ? (
+              <video src={modalGif} controls autoPlay loop muted>
+                Your browser does not support the video tag.
+              </video>
+            ) : (
+              <img src={modalGif} alt="Project demo" />
+            )}
           </div>
         </StyledModal>
       )}
