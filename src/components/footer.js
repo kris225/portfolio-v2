@@ -71,23 +71,18 @@ const Footer = () => (
     <StyledSocialLinks>
       <ul>
         {socialMedia &&
-            socialMedia.map(({ name, url }, i) => (
-              <li key={i}>
-                <a href={url} aria-label={name}>
-                  <Icon name={name} />
-                </a>
-              </li>
-            ))}
+          socialMedia.map(({ name, url }, i) => (
+            <li key={i}>
+              <a href={url} aria-label={name}>
+                <Icon name={name} />
+              </a>
+            </li>
+          ))}
       </ul>
     </StyledSocialLinks>
 
     <StyledCredit tabindex="-1">
       <div>Built by Krishna Gundimeda</div>
-      <div style={{ marginTop: '10px' }}>
-        <a href="https://github.com/bchiang7/v4" style={{ display: 'inline' }}>
-            Design Inspired by Brittany Chiang
-        </a>
-      </div>
     </StyledCredit>
   </StyledFooter>
 );

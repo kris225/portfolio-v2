@@ -139,11 +139,25 @@ const StyledBlog = styled.li`
 
 const blogsData = [
   {
+    title: 'Building Reusable Web Components at Scale',
+    description:
+      'Lessons from migrating an enterprise codebase from AngularJS to StencilJS web components.',
+    url: 'https://prabhatkrishna.wordpress.com/2025/08/11/building-reusable-web-components-at-scale-lessons-from-migrating-an-enterprise-codebase/',
+    date: 'Aug 11, 2025',
+  },
+  {
     title: 'The Case for CAG: Less Retrieval, More Speed',
     description:
       'Exploring Cache-Augmented Generation as an alternative to RAG for superior performance in LLM applications.',
     url: 'https://prabhatkrishna.wordpress.com/2024/12/25/the-case-of-cag/',
     date: 'Dec 25, 2024',
+  },
+  {
+    title: 'Designing ETL Pipelines in Python',
+    description:
+      'Best practices for building scalable and maintainable ETL pipelines using Python.',
+    url: 'https://prabhatkrishna.wordpress.com/2024/06/24/designing-etl-pipelines-in-python/',
+    date: 'Jun 24, 2024',
   },
   {
     title: 'Gemini: Google\'s Multimodal Moonshot',

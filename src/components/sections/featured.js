@@ -469,18 +469,13 @@ const Featured = () => {
                       </ul>
                     )}
 
-                    <div className="project-links">
-                      {github && (
-                        <a href={github} aria-label="GitHub Link">
-                          <Icon name="GitHub" />
-                        </a>
-                      )}
-                      {external && (
+                    {external && (
+                      <div className="project-links">
                         <a href={external} aria-label="External Link" className="external">
                           <Icon name="External" />
                         </a>
-                      )}
-                    </div>
+                      </div>
+                    )}
 
                     {publicURL && hasProjectPreview && (
                       <StyledViewDemoButton onClick={() => setModalGif(publicURL)}>
