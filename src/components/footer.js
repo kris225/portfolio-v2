@@ -85,6 +85,11 @@ const Footer = () => (
 
     <StyledCredit tabindex="-1">
       <div>Built by Krishna Gundimeda</div>
+      <div style={{ marginTop: '10px' }}>
+        <a href="https://github.com/bchiang7/v4" style={{ display: 'inline' }}>
+          Design Inspired by Brittany Chiang
+        </a>
+      </div>
     </StyledCredit>
   </StyledFooter>
 );

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { useStaticQuery, graphql } from 'gatsby';
+import { useStaticQuery, graphql, withPrefix } from 'gatsby';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import styled from 'styled-components';
 import sr from '@utils/sr';
@@ -419,7 +419,7 @@ const Featured = () => {
               frontmatter;
             const image = getImage(cover);
             const publicURL = cover?.publicURL;
-            const previewUrl = videoUrl || publicURL;
+            const previewUrl = videoUrl ? withPrefix(videoUrl) : publicURL;
 
             return (
               <StyledProject key={i} ref={el => (revealProjects.current[i] = el)}>
